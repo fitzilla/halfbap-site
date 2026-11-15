@@ -297,6 +297,7 @@
 
     var big = screen.querySelector('.intro-screen__logo');
     var bg = screen.querySelector('.intro-screen__bg');
+    var photoLayer = screen.querySelector('.intro-screen__photo');
     var target = hero.querySelector('.brand-logo');
     var finished = false;
     var timers = [];
@@ -317,19 +318,23 @@
       var from = big.getBoundingClientRect();
       var to = target.getBoundingClientRect();
       var scale = to.width / from.width;
-      big.style.transition = 'transform 1s cubic-bezier(0.7, 0, 0.2, 1)';
+      big.style.animation = 'none';
+      big.style.transition = 'transform 1.4s cubic-bezier(0.65, 0, 0.35, 1)';
       big.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + scale + ')';
       bg.style.opacity = '0';
-      timers.push(window.setTimeout(finish, 1150));
+      photoLayer.style.opacity = '0';
+      screen.style.background = 'transparent';
+      timers.push(window.setTimeout(finish, 1500));
     }
-    function start() { timers.push(window.setTimeout(fly, 900)); }
+    // let the logo ease in fully and settle before it moves
+    function start() { timers.push(window.setTimeout(fly, 1700)); }
 
     // any click or key skips it
     document.addEventListener('pointerdown', finish);
     document.addEventListener('keydown', finish);
 
     // wait for both the logo and the studio photo so the logo lands on the picture, not a blank screen
-    var photo = hero.querySelector('.hero__img.is-active');
+    var photo = photoLayer;
     var pending = 0, started = false;
     function ready() { if (--pending <= 0 && !started) { started = true; start(); } }
     [big, photo].forEach(function (img) {
@@ -340,7 +345,7 @@
     });
     if (pending === 0) { started = true; start(); }
     timers.push(window.setTimeout(function () { if (!started) { started = true; start(); } }, 1800));
-    timers.push(window.setTimeout(finish, 4000)); // safety net
+    timers.push(window.setTimeout(finish, 6000)); // safety net
   })();
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
