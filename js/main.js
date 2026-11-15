@@ -169,6 +169,26 @@
     if (t.hasAttribute('data-close-article')) { closeArticle(); return; }
   });
 
+  // Left / right arrow keys: with a panel open, step through the sections (wraps round);
+  // on the homepage, move the slideshow. Ignored while typing, and the lightbox keeps its own arrows.
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var el = document.activeElement;
+    if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+    if (lightbox.isOpen() || state.article || (phone.matches && state.menu && !state.open)) return;
+    var step = e.key === 'ArrowRight' ? 1 : -1;
+    e.preventDefault();
+    if (state.open) {
+      var i = keys.indexOf(state.open);
+      var next = keys[(i + step + keys.length) % keys.length];
+      state.from = phone.matches ? state.from : 'home';
+      openSection(next);
+    } else {
+      hero.querySelector(step > 0 ? '[data-slide-next]' : '[data-slide-prev]').click();
+    }
+  });
+
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (lightbox.isOpen()) lightbox.close();

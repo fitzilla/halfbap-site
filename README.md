@@ -19,6 +19,7 @@ Then open http://localhost:4173.
 - **Intro:** on the first visit in a browser session, the logo fills the screen and then flies into the top-left corner. Any click or key skips it.
 - **Gallery:** each photo opens a lightbox with arrows, swipe and keyboard controls.
 - **Links:** every view has its own URL that can be shared: `#about`, `#services`, `#equipment`, `#gallery`, `#contact` and `#alana-henderson`.
+- **Keyboard:** with a panel open, ← and → step through the sections; on the homepage they move the slideshow. Esc closes things.
 - **Older browsers:** works on Safari 13+ and every current browser. With JavaScript off, all five sections show as one long scrolling page.
 - **Reduced motion:** visitors who ask their device for less motion get no intro animation and no autoplay.
 
