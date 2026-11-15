@@ -307,7 +307,19 @@
     // any click or key skips it
     document.addEventListener('pointerdown', finish);
     document.addEventListener('keydown', finish);
-    if (big.complete) start(); else { big.addEventListener('load', start); big.addEventListener('error', finish); }
+
+    // wait for both the logo and the studio photo so the logo lands on the picture, not a blank screen
+    var photo = hero.querySelector('.hero__img.is-active');
+    var pending = 0, started = false;
+    function ready() { if (--pending <= 0 && !started) { started = true; start(); } }
+    [big, photo].forEach(function (img) {
+      if (!img || img.complete) return;
+      pending++;
+      img.addEventListener('load', ready);
+      img.addEventListener('error', ready);
+    });
+    if (pending === 0) { started = true; start(); }
+    timers.push(window.setTimeout(function () { if (!started) { started = true; start(); } }, 1800));
     timers.push(window.setTimeout(finish, 4000)); // safety net
   })();
 

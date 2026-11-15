@@ -38,6 +38,6 @@ Then open http://localhost:4173.
 - [ ] **Instagram feed:** the "Latest on Instagram" tiles are studio photos linking to the profile. For real posts, swap the `.feed__grid` list for an Instagram feed embed (e.g. Behold or Elfsight) (search `TODO` in `index.html`).
 - [ ] Fill in **[Producer]** and **[Engineer]** in the Alana Henderson article in `index.html`.
 - [ ] **Booking form:** at the moment it opens the visitor's email app with the details filled in. To receive submissions without that step, point the `<form>` at a form service such as Formspree or Netlify Forms, and remove the `submit` handler in `js/main.js`.
-- [ ] Check that "Three rooms off a cobbled street" (Gallery) is accurate.
+- [ ] **Images (nice to have):** re-encode as WebP/AVIF with JPEG fallbacks and tighter compression. Roughly halves image weight (about 2.5MB down to 1–1.3MB if everything is opened).
 - [ ] **Fonts:** Chakra Petch, Inter Tight and Space Mono, all from Google Fonts. They're free to use (OFL licence) on any site.
 - [ ] Add more slides: copy a `hero__img` and a `stage-layer`, give them the next `data-slide-index`, and add a matching `.dot`.
