@@ -2,14 +2,18 @@
    - Desktop: strips on the right expand sideways into panels.
    - Phone (< 900px): Menu opens a drawer; each item slides in a full-screen page.
    - Homepage slideshow (studio, Alana Henderson) with dots, arrows, pause and autoplay.
-   - Full-screen article overlay.
-   - Booking form opens the visitor's email app (no server needed). */
+   - Article drawer, photo lightbox, first-visit intro.
+   - Contact form opens the visitor's email app (no server needed yet). */
 (function () {
   'use strict';
+  window.hbReady = true; // tells the safety net in <head> the script loaded
 
   var site = document.getElementById('site');
-  var hero = document.getElementById('main');
+  var hero = document.getElementById('hero');
   var heroUi = hero.querySelector('.hero__ui');
+  var heroStage = hero.querySelector('.hero__stage');
+  var heroBottom = hero.querySelector('.hero__bottom');
+  var heroContact = hero.querySelector('.hero__contact');
   var stack = document.getElementById('stack');
   var drawer = document.getElementById('drawer');
   var article = document.getElementById('article');
@@ -24,10 +28,20 @@
   var state = { open: null, menu: false, article: false, from: 'home' };
   var lastTrigger = null;
 
-  // Only move focus around for keyboard users (stops the focus ring flashing after a click)
-  var keyboardUser = false;
-  document.addEventListener('keydown', function (e) { if (e.key === 'Tab' || e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') keyboardUser = true; }, true);
-  document.addEventListener('pointerdown', function () { keyboardUser = false; }, true);
+  // Focus always moves into whatever opens (screen readers need that), but after a mouse
+  // click or tap we hide the ring on that programmatic focus so it doesn't flash.
+  var pointerUsed = false;
+  document.addEventListener('pointerdown', function () { pointerUsed = true; }, true);
+  document.addEventListener('keydown', function () { pointerUsed = false; }, true);
+  document.addEventListener('focusout', function (e) { e.target.classList && e.target.classList.remove('focus-quiet'); }, true);
+
+  function focusSoon(el) {
+    if (!el) return;
+    window.setTimeout(function () {
+      if (pointerUsed) el.classList.add('focus-quiet');
+      el.focus({ preventScroll: true });
+    }, 60);
+  }
 
   function stripFor(key) { return stack.querySelector('.strip[data-key="' + key + '"]'); }
 
@@ -53,58 +67,51 @@
     article.inert = !state.article;
 
     heroUi.inert = !!anyOverlay;
-    hero.querySelector('.hero__stage').inert = !!state.open;
-    hero.querySelector('.hero__bottom').inert = !!state.open;
-    hero.querySelector('.hero__contact').inert = !!state.open;
-    hero.querySelector('.hero__feed').inert = !!state.open;
+    heroStage.inert = heroBottom.inert = heroContact.inert = !!state.open;
     stack.inert = state.article || (isPhone && state.menu && !state.open);
 
-    document.documentElement.style.overflow = anyOverlay ? 'hidden' : '';
     slideshow.check();
   }
 
-  function focusSoon(el) {
-    if (!el || !keyboardUser) return;
-    window.setTimeout(function () { el.focus({ preventScroll: true }); }, 60);
-  }
-
-  function setHash(hash) {
+  // replace = true for stepping between panels with the arrow keys, so Back isn't flooded
+  function setHash(hash, replace) {
     var url = location.pathname + location.search + (hash ? '#' + hash : '');
-    if (location.hash.replace('#', '') !== (hash || '')) history.pushState(null, '', url);
+    if (location.hash.replace('#', '') === (hash || '')) return;
+    if (replace) history.replaceState(null, '', url); else history.pushState(null, '', url);
   }
 
   /* ---------- sections ---------- */
-  function openSection(key, trigger) {
+  function openSection(key, trigger, replace) {
     if (keys.indexOf(key) === -1) return;
     lastTrigger = trigger || document.activeElement;
     state.from = phone.matches && state.menu ? 'menu' : 'home';
     state.article = false;
     state.open = key;
     sync();
-    setHash(key);
+    setHash(key, replace);
     var strip = stripFor(key);
     strip.querySelector('.strip__body').scrollTop = 0;
     if (phone.matches) strip.scrollTop = 0;
-    var close = phone.matches ? strip.querySelector('.mobilebar .close-btn') : strip.querySelector('.panel__close');
-    focusSoon(close);
+    focusSoon(strip.querySelector(phone.matches ? '.mobilebar .close-btn' : '.panel__close'));
   }
 
   // The X takes you back to where you were: the menu if you came from it, otherwise the homepage.
-  function closeSection(opts) {
+  function closeSection() {
     var was = state.open;
-    var backToMenu = phone.matches && (opts && opts.backToMenu !== undefined ? opts.backToMenu : state.from === 'menu');
-    opts = { backToMenu: backToMenu };
+    var backToMenu = phone.matches && state.from === 'menu';
     state.open = null;
     state.menu = backToMenu;
     sync();
     setHash('');
-    if (opts && opts.backToMenu) {
-      focusSoon(drawer.querySelector('[data-open="' + was + '"]'));
-    } else if (!phone.matches && was) {
-      focusSoon(stripFor(was).querySelector('.strip__tab'));
-    } else {
-      focusSoon(phone.matches ? menuButton : lastTrigger);
-    }
+    if (backToMenu) focusSoon(drawer.querySelector('[data-open="' + was + '"]'));
+    else if (!phone.matches && was) focusSoon(stripFor(was).querySelector('.strip__tab'));
+    else focusSoon(phone.matches ? menuButton : lastTrigger);
+  }
+
+  function goHome() {
+    state.open = null; state.menu = false; state.article = false;
+    sync(); setHash('');
+    focusSoon(phone.matches ? menuButton : hero.querySelector('.brand'));
   }
 
   /* ---------- phone drawer ---------- */
@@ -145,32 +152,22 @@
       if (state.open === key) closeSection(); else openSection(key, t);
       return;
     }
-    if (t.hasAttribute('data-home')) {
-      e.preventDefault();
-      if (lightbox.isOpen()) lightbox.close();
-      state.open = null; state.menu = false; state.article = false;
-      sync(); setHash('');
+    if (t.hasAttribute('data-home')) { e.preventDefault(); goHome(); return; }
+    if (t.hasAttribute('data-open')) { openSection(t.getAttribute('data-open'), t); return; }
+    if (t.hasAttribute('data-close')) {
+      if (t.classList.contains('hero__scrim')) t.blur(); // don't leave focus parked in the hero (it pauses the slideshow)
+      closeSection();
       return;
     }
-    if (t.hasAttribute('data-open')) {
-      // a service row pre-picks that service in the contact form
-      if (t.dataset.session) {
-        var select = form.querySelector('select[name="session"]');
-        if (select) select.value = t.dataset.session;
-      }
-      openSection(t.getAttribute('data-open'), t);
-      return;
-    }
-    if (t.hasAttribute('data-back')) { closeSection({ backToMenu: true }); return; }
-    if (t.hasAttribute('data-close')) { closeSection(); return; }
     if (t === menuButton) { openMenu(); return; }
     if (t.hasAttribute('data-close-menu')) { closeMenu(); return; }
     if (t.hasAttribute('data-open-article')) { openArticle(t); return; }
     if (t.hasAttribute('data-close-article')) { closeArticle(); return; }
   });
 
-  // Left / right arrow keys: with a panel open, step through the sections (wraps round);
-  // on the homepage, move the slideshow. Ignored while typing, and the lightbox keeps its own arrows.
+  /* ---------- keyboard ----------
+     Left / right: with a panel open, step through the sections (wraps round);
+     on the homepage, move the slideshow. Ignored while typing; the lightbox has its own. */
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
@@ -181,11 +178,9 @@
     e.preventDefault();
     if (state.open) {
       var i = keys.indexOf(state.open);
-      var next = keys[(i + step + keys.length) % keys.length];
-      state.from = phone.matches ? state.from : 'home';
-      openSection(next);
+      openSection(keys[(i + step + keys.length) % keys.length], null, true);
     } else {
-      hero.querySelector(step > 0 ? '[data-slide-next]' : '[data-slide-prev]').click();
+      slideshow.step(step);
     }
   });
 
@@ -197,7 +192,9 @@
     else if (state.menu) closeMenu();
   });
 
+  /* ---------- back / forward and shared links ---------- */
   function fromHash() {
+    if (lightbox.isOpen()) lightbox.close();
     var h = location.hash.replace('#', '');
     state.article = h === 'alana-henderson';
     var next = keys.indexOf(h) !== -1 ? h : null;
@@ -212,7 +209,7 @@
     if (!phone.matches) state.menu = false;
     sync();
   };
-  // Safari 13 and older only support addListener on media queries
+  // Safari 13 only supports addListener on media queries
   if (phone.addEventListener) phone.addEventListener('change', onPhoneChange); else phone.addListener(onPhoneChange);
 
   /* ---------- slideshow ---------- */
@@ -224,12 +221,12 @@
     var index = 0;
     var timer = null;
     var userPaused = reduced.matches;
-    var hovering = false;
+    var hovering = false;   // mouse over the slide
+    var focused = false;    // keyboard focus inside the hero
     var introDone = false;
 
     function go(i) {
       index = (i + count) % count;
-      hero.dataset.slide = String(index);
       layers.forEach(function (el) {
         var on = Number(el.dataset.slideIndex) === index;
         el.classList.toggle('is-active', on);
@@ -241,7 +238,7 @@
       });
     }
     function canRun() {
-      return introDone && !userPaused && !hovering && !document.hidden &&
+      return introDone && !userPaused && !hovering && !focused && !document.hidden &&
         !state.open && !state.menu && !state.article;
     }
     function check() {
@@ -249,34 +246,33 @@
       else if (timer) { window.clearInterval(timer); timer = null; }
     }
     function restart() { if (timer) { window.clearInterval(timer); timer = null; } check(); }
+    function step(n) { go(index + n); restart(); }
     function setPaused(p) {
       userPaused = p;
-      pauseBtn.setAttribute('aria-pressed', p ? 'true' : 'false');
-      pauseBtn.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow');
+      pauseBtn.setAttribute('aria-pressed', p ? 'true' : 'false'); // label stays "Pause slideshow"
       check();
     }
 
-    hero.querySelector('[data-slide-prev]').addEventListener('click', function () { go(index - 1); restart(); });
-    hero.querySelector('[data-slide-next]').addEventListener('click', function () { go(index + 1); restart(); });
+    hero.querySelector('[data-slide-prev]').addEventListener('click', function () { step(-1); });
+    hero.querySelector('[data-slide-next]').addEventListener('click', function () { step(1); });
     dots.forEach(function (d) {
       d.addEventListener('click', function () { go(Number(d.dataset.slideTo)); restart(); });
     });
     pauseBtn.addEventListener('click', function () { setPaused(!userPaused); });
 
-    var stage = hero.querySelector('.hero__stage');
-    stage.addEventListener('mouseenter', function () { hovering = true; check(); });
-    stage.addEventListener('mouseleave', function () { hovering = false; check(); });
-    hero.addEventListener('focusin', function () { hovering = true; check(); });
-    hero.addEventListener('focusout', function () { hovering = false; check(); });
+    heroStage.addEventListener('mouseenter', function () { hovering = true; check(); });
+    heroStage.addEventListener('mouseleave', function () { hovering = false; check(); });
+    hero.addEventListener('focusin', function () { focused = true; check(); });
+    hero.addEventListener('focusout', function () { focused = false; check(); });
     document.addEventListener('visibilitychange', check);
 
     // swipe on phones
     var startX = null;
-    stage.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-    stage.addEventListener('touchend', function (e) {
+    heroStage.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    heroStage.addEventListener('touchend', function (e) {
       if (startX === null) return;
       var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) { go(index + (dx < 0 ? 1 : -1)); restart(); }
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
       startX = null;
     });
 
@@ -285,14 +281,15 @@
 
     return {
       check: check,
+      step: step,
       introFinished: function () { introDone = true; check(); }
     };
   })();
 
   /* ---------- first-visit intro ----------
      1. The studio photo full screen with the big logo easing in.
-     2. The big logo fades out while shrinking in place, the photo layer dissolves,
-        and the rest of the site (corner logo, strips, headline, controls) fades in underneath. */
+     2. The big logo shrinks and glides into the top-left corner, fading as it lands on the
+        real corner logo; the photo layer dissolves and the site fades in underneath. */
   (function intro() {
     var root = document.documentElement;
     var screen = document.querySelector('.intro-screen');
@@ -320,33 +317,28 @@
     function leave() {
       if (leaving) return;
       leaving = true;
-      // measure where the big logo is and where the corner logo sits
       big.style.animation = 'none';
       void big.offsetWidth;
       var from = big.getBoundingClientRect();
       var to = hero.querySelector('.brand-logo').getBoundingClientRect();
       var scale = to.width / from.width;
-      var dx = to.left - from.left, dy = to.top - from.top;
-      // glide + shrink into the corner, fading out as it arrives (the real corner logo fades in on the same spot)
       big.style.transformOrigin = '0 0';
       big.style.transition = 'transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.45s cubic-bezier(0.65, 0, 0.35, 1) 0.85s';
       void big.offsetWidth;
-      big.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+      big.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + scale + ')';
       big.style.opacity = '0';
       screen.classList.add('is-leaving');
       reveal();
       timers.push(window.setTimeout(cleanUp, 1400));
     }
     function skip() { reveal(); cleanUp(); }
-
-    // let the logo ease in fully and settle before the hand-off
     function start() { timers.push(window.setTimeout(leave, 1900)); }
 
     // any click or key skips it
     document.addEventListener('pointerdown', skip);
     document.addEventListener('keydown', skip);
 
-    // wait for both the logo and the studio photo, so it never starts on a blank screen
+    // wait for the logo and the photo, so it never starts on a blank screen
     var pending = 0, started = false;
     function ready() { if (--pending <= 0 && !started) { started = true; start(); } }
     [big, photoLayer].forEach(function (img) {
@@ -362,7 +354,7 @@
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
 
-  /* ---------- gallery lightbox ---------- */
+  /* ---------- photo lightbox (gallery + producers) ---------- */
   var lightbox = (function () {
     var box = document.getElementById('lightbox');
     var img = box.querySelector('.lightbox__img');
@@ -378,18 +370,24 @@
       var cap = host && host.querySelector('figcaption, h3');
       groups[g] = groups[g] || [];
       b._lightboxIndex = groups[g].length;
-      groups[g].push({ src: b.dataset.full || i.getAttribute('src'), alt: i.getAttribute('alt'), caption: cap ? cap.textContent : '' });
+      groups[g].push({ src: b.dataset.full, alt: i.getAttribute('alt'), caption: cap ? cap.textContent : '' });
     });
     var items = [];
     var index = 0, open = false, opener = null;
     box.inert = true;
 
+    // use the WebP version when the browser picked WebP for the page's own images
+    function bestSrc(src) {
+      var probe = document.querySelector('.brand-logo');
+      var webp = probe && /\.webp(\?|$)/.test(probe.currentSrc || '');
+      return webp ? src.replace(/\.jpe?g$/, '.webp') : src;
+    }
     function show(i) {
       index = (i + items.length) % items.length;
       var it = items[index];
       img.classList.add('is-swapping');
       var swap = function () {
-        img.src = it.src; img.alt = it.alt;
+        img.src = bestSrc(it.src); img.alt = it.alt;
         text.textContent = it.caption && it.alt.indexOf(it.caption) === -1 ? it.caption + ' · ' + it.alt : it.alt;
         count.textContent = pad(index + 1) + ' / ' + pad(items.length);
         window.requestAnimationFrame(function () { img.classList.remove('is-swapping'); });
@@ -403,7 +401,6 @@
       box.classList.add('is-open');
       box.inert = false;
       site.inert = true;
-      slideshow.check();
       focusSoon(box.querySelector('.lightbox__close'));
     }
     function close() {
@@ -435,12 +432,12 @@
     return { isOpen: function () { return open; }, close: close };
   })();
 
-  /* ---------- booking form -> email app ---------- */
+  /* ---------- contact form -> email app ----------
+     (Swap for a form service such as Formspree at launch: see README.) */
   var form = document.getElementById('book-form');
   var note = document.getElementById('form-note');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!form.reportValidity()) return;
     var d = new FormData(form);
     var subject = 'Enquiry: ' + d.get('session') + ' (' + d.get('name') + ')';
     var body = 'Name: ' + d.get('name') + '\nEmail: ' + d.get('email') +
