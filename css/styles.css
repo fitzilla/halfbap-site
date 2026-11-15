@@ -373,7 +373,7 @@ a { color: inherit; }
 .two-col p { flex: 1 1 280px; max-width: 52ch; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--muted); }
 
 .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 44px 32px; }
-.person { display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+.person { display: flex; flex-direction: column; gap: 12px; }
 .person img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; }
 .person .label { margin-top: 4px; font-size: 11px; }
 .person h3 { margin: 0; font-family: var(--display); font-weight: 300; text-transform: uppercase; font-size: clamp(30px, 2.8vw, 44px); line-height: 0.95; }
