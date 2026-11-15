@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Half Bap Recording Studios</title>
+<meta name="description" content="Recording studio on Commercial Court, Belfast, since 2011. Recording, production, mixing, mastering, voice overs, dry hire, sound design and remote recording.">
+<meta name="theme-color" content="#0a0a0a">
+<!-- Preview build: keep out of search engines. Remove this line at launch. -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Half Bap Recording Studios">
+<meta property="og:description" content="Making records with friends since 2011. 8 Commercial Court, Belfast.">
+<meta property="og:image" content="img/studio-live-room.jpg">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Inter+Tight:wght@400;500;600&family=Space+Mono:wght@400;700&display=block" rel="stylesheet">
+<link rel="preload" as="image" href="img/studio-live-room.jpg" imagesrcset="img/studio-live-room-1280.jpg 1280w, img/studio-live-room.jpg 2000w" imagesizes="(max-width: 899px) 100vw, 80vw">
+<link rel="stylesheet" href="css/styles.css?v=22">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js', 'fonts-loading');
+    var setVw = function () { d.style.setProperty('--vw', d.clientWidth + 'px'); };
+    setVw(); window.addEventListener('resize', setVw);
+    // Hold the big type back until Chakra Petch has loaded, so it never flashes in a stand-in font
+    var done = function () { d.classList.remove('fonts-loading'); };
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('300 1em "Chakra Petch"'), document.fonts.load('400 1em "Inter Tight"')]).then(done, done);
+    } else { done(); }
+    setTimeout(done, 2500);
+    try {
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!calm && !sessionStorage.getItem('hb-intro-seen') && !location.hash) d.classList.add('has-intro');
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- First visit only: the logo fills the screen, then flies into the top-left corner -->
+<div class="intro-screen" aria-hidden="true">
+  <div class="intro-screen__bg"></div>
+  <img class="intro-screen__logo" src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500">
+</div>
+
+<div class="site" id="site">
+
+  <!-- ============ HERO / SLIDESHOW ============ -->
+  <main class="hero" id="main" data-slide="0">
+
+    <div class="hero__media" aria-hidden="true">
+      <img class="hero__img is-active" data-slide-index="0" src="img/studio-live-room.jpg" srcset="img/studio-live-room-1280.jpg 1280w, img/studio-live-room.jpg 2000w" sizes="(max-width: 899px) 100vw, 80vw" alt="" width="2000" height="1429" fetchpriority="high">
+      <img class="hero__img hero__img--alana" data-slide-index="1" src="img/alana-henderson-not-going-anywhere.jpg" srcset="img/alana-henderson-not-going-anywhere-900.jpg 900w, img/alana-henderson-not-going-anywhere.jpg 1400w" sizes="(max-width: 899px) 100vw, 80vw" alt="" width="1400" height="956" loading="lazy">
+      <div class="hero__shade"></div>
+    </div>
+
+    <div class="hero__ui">
+      <div class="hero__top">
+        <a class="brand" href="./" data-home aria-label="Half Bap Recording Studios, home"><img class="brand-logo" src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+        <button type="button" class="btn-outline hero__contact" data-open="contact">
+          Contact us
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+        </button>
+        <button type="button" class="btn-outline hero__menu" id="menu-button" aria-expanded="false" aria-controls="drawer">
+          <svg aria-hidden="true" width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1h18M0 6h18M0 11h18"/></svg>
+          Menu
+        </button>
+      </div>
+
+      <section class="hero__stage" aria-roledescription="carousel" aria-label="Featured">
+        <div class="stage-layer stage-layer--studio is-active" data-slide-index="0" role="group" aria-roledescription="slide" aria-label="1 of 2: The studio">
+          <div class="reveal">
+            <p class="status"><span class="rec-dot" aria-hidden="true"></span>Recording studio · Belfast · Est. 2011</p>
+            <h1 class="big-name">Half Bap<br>Recording<br>Studios</h1>
+          </div>
+        </div>
+        <div class="stage-layer stage-layer--alana" data-slide-index="1" role="group" aria-roledescription="slide" aria-label="2 of 2: Alana Henderson">
+          <p class="label">New video · Recorded at Half Bap</p>
+          <h2 class="feature-title">Alana Henderson</h2>
+          <p class="feature-sub">“Not Going Anywhere”</p>
+          <div class="feature-actions">
+            <button type="button" class="btn-red" data-open-article>Read more</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="feed hero__feed reveal" aria-label="Latest from Half Bap on Instagram">
+        <!-- TODO: these tiles are studio photos standing in for posts. For live posts, swap the <ul class="feed__grid"> for an Instagram feed embed (e.g. Behold or Elfsight). -->
+        <div class="feed__head">
+          <p class="label">Latest on Instagram</p>
+          <a class="feed__handle" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener">@halfbapstudios <span aria-hidden="true">↗</span></a>
+        </div>
+        <ul class="feed__grid">
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/storefront.jpg" alt="Half Bap on Instagram: Commercial Court" width="800" height="571" loading="lazy"></a></li>
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/live-room-drums.jpg" alt="Half Bap on Instagram: The live room" width="800" height="571" loading="lazy"></a></li>
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/vocal-booth.jpg" alt="Half Bap on Instagram: Vocal booth" width="800" height="571" loading="lazy"></a></li>
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/control-room-desk.jpg" alt="Half Bap on Instagram: Control room" width="800" height="571" loading="lazy"></a></li>
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/piano.jpg" alt="Half Bap on Instagram: The piano" width="800" height="571" loading="lazy"></a></li>
+          <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/outboard.jpg" alt="Half Bap on Instagram: Outboard rack" width="800" height="571" loading="lazy"></a></li>
+        </ul>
+        <div class="feed__links">
+          <a href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener">Follow on Instagram <span aria-hidden="true">↗</span></a>
+          <a href="https://www.facebook.com/HalfBapStudios" target="_blank" rel="noopener">Facebook <span aria-hidden="true">↗</span></a>
+        </div>
+      </aside>
+
+      <div class="hero__bottom reveal">
+        <div class="hero__links">
+          <a class="link-mono" href="https://www.google.com/maps/search/?api=1&amp;query=Half+Bap+Recording+Studios%2C+8+Commercial+Court%2C+Belfast+BT1+2NB" target="_blank" rel="noopener">
+            <svg aria-hidden="true" width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M7 15s5-4.6 5-8.5A5 5 0 0 0 2 6.5C2 10.4 7 15 7 15z"/><circle cx="7" cy="6.5" r="1.8"/></svg>
+            <span>8 Commercial Court, Belfast<span class="hide-sm"> · Map</span></span>
+          </a>
+          <a class="link-mono link-mono--quiet hide-sm" href="mailto:info@halfbapstudios.com">info@halfbapstudios.com</a>
+          <span class="socials socials--icons"><a class="social" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener" aria-label="Half Bap on Instagram"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a><a class="social" href="https://www.facebook.com/HalfBapStudios" target="_blank" rel="noopener" aria-label="Half Bap on Facebook"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg><span>Facebook</span></a></span>
+        </div>
+        <div class="carousel-controls">
+          <button type="button" class="icon-btn" data-slide-prev aria-label="Previous slide">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8H2M7 3L2 8l5 5"/></svg>
+          </button>
+          <button type="button" class="dot is-active" data-slide-to="0" aria-label="Show slide 1: The studio" aria-current="true"><span></span></button>
+          <button type="button" class="dot" data-slide-to="1" aria-label="Show slide 2: Alana Henderson"><span></span></button>
+          <button type="button" class="icon-btn" data-slide-next aria-label="Next slide">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+          </button>
+          <button type="button" class="icon-btn" data-slide-pause aria-label="Pause slideshow" aria-pressed="false">
+            <svg class="i-pause" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>
+            <svg class="i-play" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1l10 6-10 6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="hero__scrim" data-close tabindex="-1" aria-label="Close panel"></button>
+  </main>
+
+  <!-- ============ THE STACK (desktop strips / phone pages) ============ -->
+  <div class="stack" id="stack">
+
+    <!-- 01 ABOUT -->
+    <section class="strip" data-key="about" aria-labelledby="tab-about">
+      <button type="button" class="strip__tab" id="tab-about" aria-expanded="false" aria-controls="body-about">
+        <span class="strip__num">01</span><span class="strip__label">About</span>
+      </button>
+      <div class="strip__body" id="body-about">
+        <div class="mobilebar">
+          <a class="mobilebar__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+          <button type="button" class="close-btn" data-close aria-label="Close About"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+        </div>
+        <div class="panel-closebar"><button type="button" class="close-btn panel__close" data-close aria-label="Close About"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button></div>
+        <div class="strip__inner panel">
+          <p class="label">01 — About</p>
+          <h2 class="panel__title">Making records since 2011.</h2>
+          <div class="two-col">
+            <p>Opened by producers Graham Davidson and George Sloan, Half Bap sits on the cobbled streets of Commercial Court in Belfast city centre, right beside the Duke of York.</p>
+            <p>We don't just press record. We work on arrangements, sounds and performances with you, across a 500 sq ft live room, a dead room and a big collection of vintage and modern gear.</p>
+          </div>
+          <div class="people">
+            <article class="person">
+              <button data-full="img/graham-davidson.jpg" type="button" class="gallery__open person__open" data-lightbox="people" aria-label="View larger: Graham Davidson at the mixing console"><img src="img/thumbs/graham-davidson.jpg" alt="Graham Davidson at the mixing console" width="1000" height="714" loading="lazy"></button>
+              <p class="label">Producer / Engineer</p>
+              <h3>Graham Davidson</h3>
+              <p>Multi award-winning producer with 20 years in music. Known for alt rock, punk and indie bands that sound massive and still sound like themselves.</p>
+            </article>
+            <article class="person">
+              <button data-full="img/george-sloan.jpg" type="button" class="gallery__open person__open" data-lightbox="people" aria-label="View larger: George Sloan at the mixing console"><img src="img/thumbs/george-sloan.jpg" alt="George Sloan at the mixing console" width="1000" height="714" loading="lazy"></button>
+              <p class="label">Producer / Engineer</p>
+              <h3>George Sloan</h3>
+              <p>Working with artists from New York to Indonesia since 2009, across bands, theatre and dance. Heard on RTÉ Radio 1, BBC Radio 2 and 6 Music.</p>
+            </article>
+            <article class="person">
+              <button data-full="img/kacper-lewandoski.jpg" type="button" class="gallery__open person__open" data-lightbox="people" aria-label="View larger: Kacper Lewandoski in the studio"><img src="img/thumbs/kacper-lewandoski.jpg" alt="Kacper Lewandoski in the studio" width="1400" height="933" loading="lazy"></button>
+              <p class="label">Producer / Engineer</p>
+              <h3>Kacper Lewandoski</h3>
+              <p>Award-winning heavy metal producer and mix engineer. Extremely fast, or slow and low-tuned: both welcome.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 SERVICES -->
+    <section class="strip" data-key="services" aria-labelledby="tab-services">
+      <button type="button" class="strip__tab" id="tab-services" aria-expanded="false" aria-controls="body-services">
+        <span class="strip__num">02</span><span class="strip__label">Services</span>
+      </button>
+      <div class="strip__body" id="body-services">
+        <div class="mobilebar">
+          <a class="mobilebar__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+          <button type="button" class="close-btn" data-close aria-label="Close Services"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+        </div>
+        <div class="panel-closebar"><button type="button" class="close-btn panel__close" data-close aria-label="Close Services"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button></div>
+        <div class="strip__inner panel">
+          <p class="label">02 — Services</p>
+          <h2 class="visually-hidden">Services</h2>
+          <ol class="services">
+            <li><span class="services__n">01</span><h3><button type="button" class="services__link" data-open="contact" data-session="Tracking">Recording &amp; Production<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>Solo takes to full-band live sessions across the live room, vocal booth and control room.</p></li>
+            <li><span class="services__n">02</span><h3><button type="button" class="services__link" data-open="contact" data-session="Mixing">Mixing &amp; Mastering<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>Tracked here, at home or elsewhere. Digital precision with high-end analogue outboard.</p></li>
+            <li><span class="services__n">03</span><h3><button type="button" class="services__link" data-open="contact" data-session="Voice Overs">Voice Overs<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>A fully treated vocal booth and plenty of mics for TV, film and theatre.</p></li>
+            <li><span class="services__n">04</span><h3><button type="button" class="services__link" data-open="contact" data-session="Dry Hire">Dry Hire<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>Hire the studio and run your own sessions.</p></li>
+            <li><span class="services__n">05</span><h3><button type="button" class="services__link" data-open="contact" data-session="Sound Design">Sound Design<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>Soundscapes, foley and music for screen and stage.</p></li>
+            <li><span class="services__n">06</span><h3><button type="button" class="services__link" data-open="contact" data-session="Remote Recording">Remote Recording<svg class="services__arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button></h3><p>We bring the studio rig to your venue to record live.</p></li>
+          </ol>
+          <p class="lede">New artist or already established, every stage of your record happens under one roof, on vintage and modern equipment.</p>
+          <button type="button" class="btn-red" data-open="contact">Book a session</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 EQUIPMENT -->
+    <section class="strip" data-key="equipment" aria-labelledby="tab-equipment">
+      <button type="button" class="strip__tab" id="tab-equipment" aria-expanded="false" aria-controls="body-equipment">
+        <span class="strip__num">03</span><span class="strip__label">Equipment</span>
+      </button>
+      <div class="strip__body" id="body-equipment">
+        <div class="mobilebar">
+          <a class="mobilebar__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+          <button type="button" class="close-btn" data-close aria-label="Close Equipment"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+        </div>
+        <div class="panel-closebar"><button type="button" class="close-btn panel__close" data-close aria-label="Close Equipment"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button></div>
+        <div class="strip__inner panel">
+          <p class="label">03 — Equipment</p>
+          <h2 class="panel__title">The gear rundown.</h2>
+          <p class="lede">Microphones, instruments, amps and outboard on hand at Half Bap. If you don't see something you need, just ask.</p>
+          <div class="gear-full gear-full--open">
+            <div class="gear-full__grid">
+            <div class="gear-full__group">
+              <h4>Recording Equipment</h4>
+              <ul>
+                <li>Mac Studio 2024</li>
+                <li>Adam AX7</li>
+                <li>AVID I/O</li>
+                <li>AVID HD Native Card</li>
+                <li>Digidesign Control 24</li>
+                <li>API Audio 500-8P</li>
+                <li>Neve 1083lb x2</li>
+                <li>SSL VHD 500 x2</li>
+                <li>AVD Audio 500 x2</li>
+                <li>Universal Audio 4-710d</li>
+                <li>Amek Pure Path</li>
+                <li>Focusrite ISA428</li>
+                <li>Drawmer 1960</li>
+                <li>SPL Gold Mike Dual</li>
+                <li>ART Pro MPA2</li>
+                <li>Empirical Labs Distressor</li>
+                <li>Audioscape D-Comp</li>
+                <li>Warm Audio Bus Comp</li>
+                <li>Furman M-10x E</li>
+                <li>Millenium PB16</li>
+                <li>Neutrik NYS-SSP</li>
+                <li>Apogee Converter AD16</li>
+                <li>Behringer Powerplay</li>
+                <li>Focusrite Liquid Saffire 56</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Microphones</h4>
+              <ul>
+                <li>Neumann U87ai</li>
+                <li>Heiserman Type-19</li>
+                <li>AKG C414 x2</li>
+                <li>Aston Spirit x2</li>
+                <li>AKG C451b x2</li>
+                <li>AKG D112</li>
+                <li>Shure SM7b</li>
+                <li>Shure 98a x2</li>
+                <li>Shure SM57 x3</li>
+                <li>Shure Beta SM57</li>
+                <li>Shure Beta 91a</li>
+                <li>Shure SM58 x4</li>
+                <li>EV RE320</li>
+                <li>MXL 603</li>
+                <li>Sennheiser e609</li>
+                <li>Sennheiser MD421</li>
+                <li>SE Voodoo VR1</li>
+                <li>Beyerdynamic M160 x2</li>
+                <li>Beyerdynamic M201</li>
+                <li>Wasaphone MK1</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Guitars &amp; Bass</h4>
+              <ul>
+                <li>Fender Jazzmaster</li>
+                <li>Fender Telecaster</li>
+                <li>Fender Telecaster (left handed)</li>
+                <li>Fender Jazz Bass</li>
+                <li>Gibson Les Paul Studio</li>
+                <li>Squier Strat</li>
+                <li>Epiphone Les Paul</li>
+                <li>Epiphone Thunderbird</li>
+                <li>Epiphone Swingster</li>
+                <li>Epiphone Dot (left handed)</li>
+                <li>Hofner Violin Bass</li>
+                <li>Ibanez SA</li>
+                <li>Yamaha Acoustic</li>
+                <li>Turner Acoustic</li>
+                <li>Turner Acoustic 80CE</li>
+                <li>Hohner Acoustic</li>
+                <li>Tanglewood 12 String</li>
+                <li>Oldfield Acoustic</li>
+                <li>Taylor C214 (left handed)</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Drums &amp; Snares</h4>
+              <ul>
+                <li>Gretsch USA Broadkaster</li>
+                <li>Pearl Vision</li>
+                <li>Gretsch Catalina</li>
+                <li>80&#x27;s Premier Elite</li>
+                <li>Ludwig Black Beauty</li>
+                <li>70&#x27;s Ludwig Acrolite</li>
+                <li>60&#x27;s Slingerland Artist</li>
+                <li>Pearl Sensitone</li>
+                <li>Shine Custom</li>
+                <li>Tama SPL</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Cymbals</h4>
+              <ul>
+                <li>Zildjian 18&quot; A Custom</li>
+                <li>Zildjian 19&quot; A Custom Projection</li>
+                <li>Zildjian 20&quot; A Custom Ride 1950&#x27;s</li>
+                <li>Zildjian 15&quot; A New Beats</li>
+                <li>Zildjian 20&quot; Z Custom Ride</li>
+                <li>Zildjian 16&quot; Fast Crash</li>
+                <li>Istanbul 30th Anniversary 18&quot; Crash</li>
+                <li>Istanbul 30th Anniversary 19&quot; Crash</li>
+                <li>Istanbul 30th Anniversary 22&quot; Ride</li>
+                <li>Istanbul 30th Anniversary 15&quot; Hi Hats</li>
+                <li>Sabian 14&quot; AA Hihats</li>
+                <li>Sabian 16&quot; HH Crash</li>
+                <li>Sabian 18&quot; HHX Evolution</li>
+                <li>Sabian 21&quot; HH Ride</li>
+                <li>Paiste 20&quot; Ride</li>
+                <li>Dream 24&quot; Contact Ride</li>
+                <li>Dream 22&quot; Crash/Ride Contact</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Drum Hardware &amp; Percussion</h4>
+              <ul>
+                <li>Pearl kick pedal</li>
+                <li>Sonor kick pedal</li>
+                <li>DW 5000 kick pedal</li>
+                <li>Pearl boom stands</li>
+                <li>Pearl straight stand</li>
+                <li>Yamaha hihat stand</li>
+                <li>Mapex hihat stand</li>
+                <li>Roc n Soc drum throne</li>
+                <li>LP Cajon</li>
+                <li>LP Tambourine</li>
+                <li>Congas</li>
+                <li>Shakers &amp; misc percussion</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Amps &amp; Cabs</h4>
+              <ul>
+                <li>Fender Twin Reverb</li>
+                <li>Fender Princeton &#x27;65</li>
+                <li>Fender 600 Champ</li>
+                <li>Laney TF700</li>
+                <li>Laney IRT60-H</li>
+                <li>Peavey 6505</li>
+                <li>Vox AC30</li>
+                <li>Bugera 333XL</li>
+                <li>Marshall MG100</li>
+                <li>Marshall JCM 2000</li>
+                <li>MG Amplification Rocker 50</li>
+                <li>70s Carlsboro 4x12 Cab</li>
+                <li>Mesa Boogie 4x12 Cab</li>
+                <li>Marshall 4x10 Cab</li>
+                <li>Epiphone Valve Junior</li>
+                <li>Danelectro &#x27;Nifty Fifty&#x27;</li>
+                <li>HH Musician Reverb</li>
+                <li>HH Bass Head</li>
+                <li>Trace Elliot</li>
+                <li>Ashdown ABM 500 Bass</li>
+                <li>Kay Bass Amp</li>
+                <li>Line 6 Spider</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Software</h4>
+              <ul>
+                <li>Avid</li>
+                <li>Native Instruments</li>
+                <li>Spitfire Audio</li>
+                <li>Splice</li>
+                <li>Pro Tools Ultimate 2026</li>
+                <li>Logic Pro 11</li>
+                <li>Cubase 14</li>
+                <li>Ableton Live 11</li>
+                <li>Universal Audio</li>
+                <li>FabFilter</li>
+                <li>Waves</li>
+                <li>Soundtoys</li>
+                <li>Slate</li>
+                <li>Sonnox</li>
+                <li>...and more</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Effects Pedals</h4>
+              <ul>
+                <li>Hologram Microcosm</li>
+                <li>Electro-Harmonix Big Muff</li>
+                <li>Electro-Harmonix Pitch Fork</li>
+                <li>Electro-Harmonix Mel 9</li>
+                <li>Digitech Whammy-V</li>
+                <li>Danelectro Spring King</li>
+                <li>Strymon Big Sky</li>
+                <li>Strymon Timeline</li>
+                <li>Fulltone OCD</li>
+                <li>Boss Fender FRV1</li>
+                <li>Boss DS-1</li>
+                <li>Boss OC-3</li>
+                <li>Boss TU-2</li>
+                <li>Boss DF-2</li>
+                <li>Boss RC-20</li>
+                <li>Boss CH-1</li>
+                <li>Boss PH-2</li>
+                <li>Boss TR-2</li>
+                <li>Boss AW-3</li>
+                <li>Seymour Duncan Pickup Booster</li>
+                <li>Behringer VD400</li>
+                <li>Behringer NR300</li>
+                <li>Fender ABY</li>
+                <li>Ernie Ball Volume Pedal</li>
+                <li>Moosetronix Fuzz</li>
+                <li>Pro-Co Rat</li>
+              </ul>
+            </div>
+            <div class="gear-full__group">
+              <h4>Keyboards</h4>
+              <ul>
+                <li>Bannerman Upright Piano</li>
+                <li>Roland Piano</li>
+                <li>Korg Microsynth</li>
+                <li>Yamaha Organ</li>
+                <li>Korg Minilogue</li>
+                <li>Behringer Deepmind 12</li>
+                <li>Teenage Engineering OP-1</li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 GALLERY -->
+    <section class="strip" data-key="gallery" aria-labelledby="tab-gallery">
+      <button type="button" class="strip__tab" id="tab-gallery" aria-expanded="false" aria-controls="body-gallery">
+        <span class="strip__num">04</span><span class="strip__label">Gallery</span>
+      </button>
+      <div class="strip__body" id="body-gallery">
+        <div class="mobilebar">
+          <a class="mobilebar__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+          <button type="button" class="close-btn" data-close aria-label="Close Gallery"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+        </div>
+        <div class="panel-closebar"><button type="button" class="close-btn panel__close" data-close aria-label="Close Gallery"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button></div>
+        <div class="strip__inner panel">
+          <p class="label">04 — Gallery</p>
+          <h2 class="panel__title">Three rooms off a cobbled street.</h2>
+          <div class="gallery">
+            <figure><button data-full="img/storefront.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Half Bap storefront on Commercial Court"><img src="img/thumbs/storefront.jpg" alt="Half Bap storefront on Commercial Court" loading="lazy" width="1024" height="683"></button><figcaption>Commercial Court</figcaption></figure>
+            <figure><button data-full="img/control-room-desk.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Control room mixing desk with monitor"><img src="img/thumbs/control-room-desk.jpg" alt="Control room mixing desk with monitor" loading="lazy" width="1600" height="1143"></button><figcaption>Control room</figcaption></figure>
+            <figure><button data-full="img/vocal-booth.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Vocal booth microphone with a view into the live room"><img src="img/thumbs/vocal-booth.jpg" alt="Vocal booth microphone with a view into the live room" loading="lazy" width="1600" height="1143"></button><figcaption>Vocal booth</figcaption></figure>
+            <figure><button data-full="img/live-room-drums.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Drum kit close-up in the live room"><img src="img/thumbs/live-room-drums.jpg" alt="Drum kit close-up in the live room" loading="lazy" width="1600" height="1143"></button><figcaption>Live room</figcaption></figure>
+            <figure><button data-full="img/outboard.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Outboard gear rack in the control room"><img src="img/thumbs/outboard.jpg" alt="Outboard gear rack in the control room" loading="lazy" width="1600" height="1143"></button><figcaption>Outboard</figcaption></figure>
+            <figure><button data-full="img/piano.jpg" type="button" class="gallery__open" data-lightbox="gallery" aria-label="View larger: Upright piano with a lamp"><img src="img/thumbs/piano.jpg" alt="Upright piano with a lamp" loading="lazy" width="1600" height="1143"></button><figcaption>Live room</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 BOOK -->
+    <section class="strip strip--book" data-key="contact" aria-labelledby="tab-contact">
+      <button type="button" class="strip__tab" id="tab-contact" aria-expanded="false" aria-controls="body-contact">
+        <span class="strip__num">05</span><span class="strip__label">Contact us</span>
+      </button>
+      <div class="strip__body" id="body-contact">
+        <div class="mobilebar">
+          <a class="mobilebar__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500"></a>
+          <button type="button" class="close-btn" data-close aria-label="Close Contact us"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+        </div>
+        <div class="panel-closebar"><button type="button" class="close-btn panel__close" data-close aria-label="Close Contact us"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button></div>
+        <div class="strip__inner panel">
+          <p class="label">05 — Contact us</p>
+          <h2 class="panel__title panel__title--xl">Get in touch.</h2>
+          <a class="big-email" href="mailto:info@halfbapstudios.com">info@halfbapstudios.com</a>
+          <div class="meta-row">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Half+Bap+Recording+Studios%2C+8+Commercial+Court%2C+Belfast+BT1+2NB" target="_blank" rel="noopener">8 Commercial Court, <span class="nowrap">Belfast BT1 2NB</span> <span class="nowrap">· Map</span></a>
+            <span>We reply within 1–2 business days</span>
+          </div>
+          <aside class="feed feed--panel" aria-label="Latest from Half Bap on Instagram">
+            <!-- TODO: these tiles are studio photos standing in for posts. For live posts, swap the <ul class="feed__grid"> for an Instagram feed embed (e.g. Behold or Elfsight). -->
+            <div class="feed__head">
+              <p class="label">Latest on Instagram</p>
+              <a class="feed__handle" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener">@halfbapstudios <span aria-hidden="true">↗</span></a>
+            </div>
+            <ul class="feed__grid">
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/storefront.jpg" alt="Half Bap on Instagram: Commercial Court" width="800" height="571" loading="lazy"></a></li>
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/live-room-drums.jpg" alt="Half Bap on Instagram: The live room" width="800" height="571" loading="lazy"></a></li>
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/vocal-booth.jpg" alt="Half Bap on Instagram: Vocal booth" width="800" height="571" loading="lazy"></a></li>
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/control-room-desk.jpg" alt="Half Bap on Instagram: Control room" width="800" height="571" loading="lazy"></a></li>
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/piano.jpg" alt="Half Bap on Instagram: The piano" width="800" height="571" loading="lazy"></a></li>
+              <li><a class="feed__post" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener"><img src="img/thumbs/outboard.jpg" alt="Half Bap on Instagram: Outboard rack" width="800" height="571" loading="lazy"></a></li>
+            </ul>
+            <div class="feed__links">
+              <a href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener">Follow on Instagram <span aria-hidden="true">↗</span></a>
+              <a href="https://www.facebook.com/HalfBapStudios" target="_blank" rel="noopener">Facebook <span aria-hidden="true">↗</span></a>
+            </div>
+          </aside>
+          <form class="book-form" id="book-form" action="mailto:info@halfbapstudios.com" method="post" enctype="text/plain">
+            <label>Name<input type="text" name="name" autocomplete="name" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+            <label class="full">Session type
+              <select name="session">
+                <option>Tracking</option>
+                <option>Mixing</option>
+                <option>Mastering</option>
+                <option>Writing &amp; Production</option>
+                <option>Voice Overs</option>
+                <option>Dry Hire</option>
+                <option>Sound Design</option>
+                <option>Remote Recording</option>
+                <option>Not sure yet</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="full">Tell us about the project<textarea name="message" rows="5"></textarea></label>
+            <div class="full form-actions">
+              <button type="submit" class="btn-red">Send message</button>
+              <p class="form-note" id="form-note" role="status"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PHONE DRAWER MENU ============ -->
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="drawer__top">
+      <a class="drawer__home" href="./" data-home aria-label="Half Bap Recording Studios, home"><img src="img/halfbap-logo.png?v=3" alt="" width="1830" height="500" class="drawer__logo"></a>
+      <button type="button" class="close-btn" data-close-menu aria-label="Close menu"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+    </div>
+    <ol class="drawer__list">
+      <li><button type="button" data-open="about"><span class="drawer__n">01</span>About</button></li>
+      <li><button type="button" data-open="services"><span class="drawer__n">02</span>Services</button></li>
+      <li><button type="button" data-open="equipment"><span class="drawer__n">03</span>Equipment</button></li>
+      <li><button type="button" data-open="gallery"><span class="drawer__n">04</span>Gallery</button></li>
+      <li class="drawer__book"><button type="button" data-open="contact"><span class="drawer__n">05</span>Contact us</button></li>
+    </ol>
+    <div class="drawer__foot">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Half+Bap+Recording+Studios%2C+8+Commercial+Court%2C+Belfast+BT1+2NB" target="_blank" rel="noopener">8 Commercial Court, Belfast · Map</a>
+      <a href="mailto:info@halfbapstudios.com">info@halfbapstudios.com</a>
+      <div class="socials socials--text"><a class="social" href="https://www.instagram.com/halfbapstudios" target="_blank" rel="noopener" aria-label="Half Bap on Instagram"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a><a class="social" href="https://www.facebook.com/HalfBapStudios" target="_blank" rel="noopener" aria-label="Half Bap on Facebook"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg><span>Facebook</span></a></div>
+    </div>
+  </div>
+
+  <!-- ============ ARTICLE OVERLAY ============ -->
+  <button type="button" class="article-scrim" data-close-article tabindex="-1" aria-label="Close article"></button>
+  <div class="article" id="article" role="dialog" aria-modal="true" aria-labelledby="article-title">
+    <button type="button" class="close-btn article__close" data-close-article aria-label="Close article"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+    <div class="article__scroll">
+    <div class="article__media">
+      <img src="img/alana-henderson-not-going-anywhere.jpg" alt="Still from Alana Henderson's Not Going Anywhere video: a figure in a dark coat on a misty hillside at dusk" width="1400" height="956" loading="lazy">
+    </div>
+    <div class="article__body">
+      <p class="label">Artist · New video</p>
+      <h2 class="feature-title" id="article-title">Alana Henderson</h2>
+      <p class="feature-sub">“Not Going Anywhere”</p>
+      <p class="lede">Alana Henderson recorded “Not Going Anywhere” at Half Bap, on Commercial Court in Belfast. The video premiered on The Thin Air in October 2026.</p>
+      <dl class="credits">
+        <div><dt>Recorded at</dt><dd>Half Bap Recording Studios</dd></div>
+        <div><dt>Produced by</dt><dd>[Producer]</dd></div>
+        <div><dt>Engineered by</dt><dd>[Engineer]</dd></div>
+      </dl>
+      <div class="feature-actions">
+        <a class="btn-red" href="https://thethinair.net/2026/10/video-premiere-alana-henderson-not-going-anywhere" target="_blank" rel="noopener">Watch the premiere on The Thin Air <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery">
+  <button type="button" class="lightbox__backdrop" data-lightbox-close tabindex="-1" aria-label="Close gallery"></button>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" src="" alt="">
+    <figcaption class="lightbox__caption"><span class="lightbox__count"></span><span class="lightbox__text"></span></figcaption>
+  </figure>
+  <button type="button" class="icon-btn lightbox__nav lightbox__nav--prev" data-lightbox-prev aria-label="Previous photo"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
+  <button type="button" class="icon-btn lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="Next photo"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+  <button type="button" class="close-btn lightbox__close" data-lightbox-close aria-label="Close gallery"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"/></svg></button>
+</div>
+
+<script src="js/main.js?v=11"></script>
+</body>
+</html>
