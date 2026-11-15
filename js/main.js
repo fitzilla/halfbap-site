@@ -289,55 +289,67 @@
     };
   })();
 
-  /* ---------- first-visit intro: logo fills the screen, then flies top-left ---------- */
+  /* ---------- first-visit intro ----------
+     1. The studio photo full screen with the big logo easing in.
+     2. The big logo fades out while shrinking in place, the photo layer dissolves,
+        and the rest of the site (corner logo, strips, headline, controls) fades in underneath. */
   (function intro() {
     var root = document.documentElement;
     var screen = document.querySelector('.intro-screen');
     if (!root.classList.contains('has-intro') || !screen) { slideshow.introFinished(); return; }
 
     var big = screen.querySelector('.intro-screen__logo');
-    var bg = screen.querySelector('.intro-screen__bg');
     var photoLayer = screen.querySelector('.intro-screen__photo');
-    var target = hero.querySelector('.brand-logo');
-    var finished = false;
     var timers = [];
+    var leaving = false, finished = false;
 
-    function finish() {
+    function cleanUp() {
       if (finished) return;
       finished = true;
       timers.forEach(window.clearTimeout);
-      root.classList.add('intro-done');
-      root.classList.remove('has-intro');
       screen.remove();
       try { sessionStorage.setItem('hb-intro-seen', '1'); } catch (e) {}
-      document.removeEventListener('pointerdown', finish);
-      document.removeEventListener('keydown', finish);
+      document.removeEventListener('pointerdown', skip);
+      document.removeEventListener('keydown', skip);
       slideshow.introFinished();
     }
-    function fly() {
-      var from = big.getBoundingClientRect();
-      var to = target.getBoundingClientRect();
-      var scale = to.width / from.width;
-      big.style.animation = 'none';
-      big.style.transition = 'transform 1.4s cubic-bezier(0.65, 0, 0.35, 1)';
-      big.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + scale + ')';
-      bg.style.opacity = '0';
-      photoLayer.style.opacity = '0';
-      screen.style.background = 'transparent';
-      timers.push(window.setTimeout(finish, 1500));
+    function reveal() {
+      root.classList.add('intro-done');
+      root.classList.remove('has-intro');
     }
-    // let the logo ease in fully and settle before it moves
-    function start() { timers.push(window.setTimeout(fly, 1700)); }
+    function leave() {
+      if (leaving) return;
+      leaving = true;
+      // measure where the big logo is and where the corner logo sits
+      big.style.animation = 'none';
+      void big.offsetWidth;
+      var from = big.getBoundingClientRect();
+      var to = hero.querySelector('.brand-logo').getBoundingClientRect();
+      var scale = to.width / from.width;
+      var dx = to.left - from.left, dy = to.top - from.top;
+      // glide + shrink into the corner, fading out as it arrives (the real corner logo fades in on the same spot)
+      big.style.transformOrigin = '0 0';
+      big.style.transition = 'transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.45s cubic-bezier(0.65, 0, 0.35, 1) 0.85s';
+      void big.offsetWidth;
+      big.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+      big.style.opacity = '0';
+      screen.classList.add('is-leaving');
+      reveal();
+      timers.push(window.setTimeout(cleanUp, 1400));
+    }
+    function skip() { reveal(); cleanUp(); }
+
+    // let the logo ease in fully and settle before the hand-off
+    function start() { timers.push(window.setTimeout(leave, 1900)); }
 
     // any click or key skips it
-    document.addEventListener('pointerdown', finish);
-    document.addEventListener('keydown', finish);
+    document.addEventListener('pointerdown', skip);
+    document.addEventListener('keydown', skip);
 
-    // wait for both the logo and the studio photo so the logo lands on the picture, not a blank screen
-    var photo = photoLayer;
+    // wait for both the logo and the studio photo, so it never starts on a blank screen
     var pending = 0, started = false;
     function ready() { if (--pending <= 0 && !started) { started = true; start(); } }
-    [big, photo].forEach(function (img) {
+    [big, photoLayer].forEach(function (img) {
       if (!img || img.complete) return;
       pending++;
       img.addEventListener('load', ready);
@@ -345,7 +357,7 @@
     });
     if (pending === 0) { started = true; start(); }
     timers.push(window.setTimeout(function () { if (!started) { started = true; start(); } }, 1800));
-    timers.push(window.setTimeout(finish, 6000)); // safety net
+    timers.push(window.setTimeout(skip, 7000)); // safety net
   })();
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
