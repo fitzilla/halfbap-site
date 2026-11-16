@@ -64,4 +64,4 @@ cwebp -q 76 -metadata none photo.jpg -o photo.webp
 - [ ] **Instagram feed (optional):** the "Latest on Instagram" tiles in Contact us are studio photos linking to the profile. For real posts, swap the `.feed__grid` list for a feed embed (e.g. Behold or Elfsight).
 - [ ] **More slides:** copy a `hero__img` and a `stage-layer`, give them the next `data-slide-index`, and add a matching `.dot`.
 
-Fonts are Chakra Petch, Inter Tight and Space Mono from Google Fonts: free to use (OFL licence) on any site.
+Fonts are Chakra Petch (headlines) and Inter Tight (everything else) from Google Fonts: free to use (OFL licence) on any site.
