@@ -1,0 +1,25 @@
+css/styles.css
+  s_3a1103c86eae9c::t_2521e1434c9690 616-620
+  s_3a1103c86eae9c::t_0f03c5bcda1164 614-615
+index.html
+  s_3a1103c86eae9c::t_2521e1434c9690 150
+  s_3a1103c86eae9c::t_755abb0ce1271d 263,305,333,578,604,720
+js/main.js
+  s_3a1103c86eae9c::t_03eb11850f8280 99-100,102,158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ef5d29bd590eb3df47a6baf05f2f37f8a9c4ce54",
+  "prompts": {},
+  "sessions": {
+    "s_3a1103c86eae9c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "828e55f1-0156-4dbe-9ce4-29bad9a5dffb",
+        "model": "unknown"
+      },
+      "human_author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
