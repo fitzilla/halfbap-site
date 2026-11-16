@@ -394,7 +394,8 @@ p, li, dd { text-wrap: pretty; }
   font-size: clamp(42px, 6.6vw, 112px); line-height: 0.92; letter-spacing: -0.005em;
 }
 /* optical alignment: Chakra Petch's big capitals sit in from their box, so pull them back in line with the label above */
-.panel__title { margin-left: -0.08em; }
+.panel__title, .big-name { margin-left: -0.08em; }
+.feature-title, .feature-sub { margin-left: -0.03em; }
 .panel__title.is-tight-start { margin-left: -0.03em; }
 .panel__title--xl { font-size: clamp(48px, 8vw, 136px); line-height: 0.88; }
 .panel p { margin: 0; }
