@@ -650,7 +650,8 @@ p, li, dd { text-wrap: pretty; }
   }
   .mobilebar__back:hover { opacity: 0.8; }
   .strip--book .mobilebar { background: rgba(255, 68, 56, 0.95); border-bottom-color: rgba(18, 17, 15, 0.2); }
-  .strip--book .mobilebar .close-btn { color: var(--bg); }
+  .strip--book .mobilebar .close-btn { color: var(--bg); background: transparent; border-color: rgba(18, 17, 15, 0.3); }
+  .strip--book .mobilebar .close-btn:hover { background: rgba(255, 255, 255, 0.25); }
 
   /* drawer */
   .drawer {
