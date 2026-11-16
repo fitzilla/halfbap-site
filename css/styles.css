@@ -196,7 +196,7 @@ p, li, dd { text-wrap: pretty; }
 .rec-dot {
   width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto;
   position: relative; top: -1px; /* optical: a round dot beside capitals reads low when centred */
-  background: radial-gradient(circle at 50% 45%, #ffb3ab 0%, #ff5a4e 45%, var(--red) 70%, #c22a1f 100%);
+  background: radial-gradient(circle at 50% 45%, #ff8a80 0%, #ff4f43 50%, var(--red) 75%, #d9352a 100%);
   box-shadow: 0 0 6px 1px rgba(255, 68, 56, 0.6);
   animation: rec-blink 2s steps(1, end) infinite, rec-glow 2s ease-in-out infinite;
 }
@@ -249,10 +249,9 @@ p, li, dd { text-wrap: pretty; }
   width: 40px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.dot span { display: block; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.55); transition: transform 0.3s, background 0.3s; }
-.dot.is-active span { background: var(--red); transform: scale(1.35); }
-.dot:hover span { background: var(--fg); }
-.dot.is-active:hover span { background: var(--red); }
+.dot span { display: block; width: 8px; height: 8px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid rgba(239, 233, 222, 0.75); background: transparent; transition: background 0.2s, border-color 0.2s; }
+.dot.is-active span { background: var(--fg); border-color: var(--fg); }
+.dot:hover span { border-color: var(--fg); }
 [data-slide-pause] .i-play { display: none; }
 [data-slide-pause][aria-pressed="true"] .i-play { display: block; }
 [data-slide-pause][aria-pressed="true"] .i-pause { display: none; }
@@ -553,6 +552,7 @@ p, li, dd { text-wrap: pretty; }
   position: absolute; top: clamp(14px, 2vw, 24px); right: clamp(14px, 2vw, 24px); z-index: 2;
   background: rgba(18, 17, 15, 0.5); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
+.article__text { margin: 0; max-width: 56ch; font-size: 16px; line-height: 1.6; color: var(--muted); }
 .credits {
   margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px 24px;
   padding-top: 18px; border-top: 1px solid var(--line);
