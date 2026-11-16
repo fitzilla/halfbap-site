@@ -96,9 +96,10 @@
   }
 
   // The X takes you back to where you were: the menu if you came from it, otherwise the homepage.
-  function closeSection() {
+  // toMenu: the phone "← Menu" button always goes to the menu, whatever opened the page
+  function closeSection(toMenu) {
     var was = state.open;
-    var backToMenu = phone.matches && state.from === 'menu';
+    var backToMenu = phone.matches && (toMenu === true || state.from === 'menu');
     state.open = null;
     state.menu = backToMenu;
     sync();
@@ -154,6 +155,7 @@
     }
     if (t.hasAttribute('data-home')) { e.preventDefault(); goHome(); return; }
     if (t.hasAttribute('data-open')) { openSection(t.getAttribute('data-open'), t); return; }
+    if (t.hasAttribute('data-back')) { closeSection(true); return; }
     if (t.hasAttribute('data-close')) {
       if (t.classList.contains('hero__scrim')) t.blur(); // don't leave focus parked in the hero (it pauses the slideshow)
       closeSection();

@@ -611,8 +611,13 @@ p, li, dd { text-wrap: pretty; }
     -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line-soft);
   }
-  .mobilebar__home, .drawer__home { display: inline-flex; align-items: center; min-height: 44px; }
-  .mobilebar__home img { height: 30px; width: auto; }
+  .drawer__home { display: inline-flex; align-items: center; min-height: 44px; }
+  .mobilebar__back {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 4px;
+    border: 0; background: transparent; color: #fff; cursor: pointer;
+    font-family: var(--display); font-weight: 400; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .mobilebar__back:hover { opacity: 0.8; }
   .strip--book .mobilebar { background: rgba(255, 68, 56, 0.95); border-bottom-color: rgba(10, 10, 10, 0.2); }
   .strip--book .mobilebar .close-btn { color: var(--bg); }
 
