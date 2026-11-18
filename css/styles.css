@@ -506,18 +506,29 @@ p, li, dd { text-wrap: pretty; }
 .strip--book .book-form label { color: var(--bg); }
 .strip--book .big-email:hover, .strip--book .meta-row a:hover,
 .strip--book .feed__handle:hover, .strip--book .feed__links a:hover { color: #fff; }
-.strip--book .panel__close { background: rgba(255, 68, 56, 0.9); }
+.strip--book .panel__close { background: rgba(255, 68, 56, 0.9); color: var(--bg); border-color: rgba(18, 17, 15, 0.35); }
+.strip--book .panel__close:hover { background: #ff6b61; }
 .strip--book .panel .close-btn { border-color: rgba(18, 17, 15, 0.3); }
 .strip--book .panel .close-btn:hover { background: rgba(255, 255, 255, 0.25); }
 .strip--book .book-form { border-top-color: rgba(18, 17, 15, 0.3); }
+/* warm white fields on the red: dark text, so what people type is easy to read */
 .strip--book .book-form input,
 .strip--book .book-form select,
-.strip--book .book-form textarea { background: rgba(255, 255, 255, 0.2); border-color: rgba(18, 17, 15, 0.35); color: var(--bg); }
+.strip--book .book-form textarea {
+  border-radius: var(--radius); border-color: #f2ede4; background-color: #f2ede4; color: var(--bg);
+  box-shadow: 0 1px 2px rgba(18, 17, 15, 0.12);
+}
+.strip--book .book-form select {
+  -webkit-appearance: none; appearance: none; padding-right: 44px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23161513' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.strip--book .book-form select option { color: #111; background: #fff; }
 .strip--book .book-form input:focus,
 .strip--book .book-form select:focus,
-.strip--book .book-form textarea:focus { background: rgba(255, 255, 255, 0.32); }
-.strip--book .btn-primary { background: var(--bg); color: #fff; }
-.strip--book .btn-primary:hover { background: #222; }
+.strip--book .book-form textarea:focus { outline: none; background-color: #f8f5ef; border-color: var(--bg); box-shadow: 0 0 0 1px var(--bg); }
+.strip--book .btn-primary { background: var(--bg); color: var(--fg); }
+.strip--book .btn-primary:hover { background: #2a2825; }
 .strip--book :focus-visible { outline-color: var(--bg); }
 
 /* =========================================================
