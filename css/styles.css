@@ -226,7 +226,7 @@ p, li, dd { text-wrap: pretty; }
 .stage-layer--studio .reveal { display: flex; flex-direction: column; gap: clamp(14px, 1.6vw, 22px); }
 .big-name {
   margin: 0; font-family: var(--display); font-weight: 300; text-transform: uppercase;
-  font-size: clamp(56px, 9.4vw, 168px); line-height: 0.86; letter-spacing: -0.01em;
+  font-size: clamp(48px, 8vw, 144px); line-height: 0.86; letter-spacing: -0.01em;
   text-shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
 }
 
@@ -620,7 +620,7 @@ p, li, dd { text-wrap: pretty; }
   .status { font-size: 13px; }
   .hide-sm { display: none; }
   .hero__img:not(.hero__img--alana) { object-position: 40% 50%; }
-  .big-name { font-size: clamp(52px, 16vw, 92px); }
+  .big-name { font-size: clamp(46px, 14vw, 80px); }
   .brand-logo { height: 34px; }
   .feature-title { font-size: clamp(38px, 11vw, 64px); }
   .feature-sub { font-size: 20px; }
@@ -711,7 +711,7 @@ p, li, dd { text-wrap: pretty; }
 
 /* phone held sideways: keep the headline and controls on screen */
 @media (max-width: 899px) and (max-height: 500px) {
-  .big-name { font-size: clamp(40px, 12vh, 72px); }
+  .big-name { font-size: clamp(36px, 10.5vh, 62px); }
   .status { display: none; }
 }
 
